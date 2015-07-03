@@ -1,0 +1,26 @@
+<script>
+function submitChanges(){
+
+ 
+$.ajax({
+type: "GET",
+url: "http://localhost:8080/recruitmentportal/UploadToDatabase",
+data: $("#infoForm").serialize(),
+success: function (msg) {
+	if (msg === true) {
+		$("#resultContainer").html("<p style='color:green' class='alert alert-success'>Database Updated</p>");
+		$("#resultContainer").delay(100).fadeIn(300);
+		$("#resultContainer").delay(1200).fadeOut(800);
+	} else {
+		$("#resultContainer").html("<div class='alert alert-danger'>Database Update Failed</div>");
+		$("#resultContainer").delay(1200).fadeOut(800);
+	}
+},
+error : function() {
+	$("#resultContainer").html("<div class='alert alert-danger'>Server Error. Request could not be placed, please try again later</div>");
+}
+});
+ 
+
+}
+</script>
