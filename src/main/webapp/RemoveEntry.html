@@ -1,24 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html class="full" lang="en">
-
+<html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-     <meta charset="utf-8">
+     
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-   <!-- Bootstrap Core CSS -->
+  <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+<title>Remove Entries</title>
 
-    <!-- Custom CSS -->
-    <link href="css/the-big-picture.css" rel="stylesheet">
-    <title>Recruitment Portal</title>
+</head>
+<body>
+<br><br><br><br><br><br>
+<h1 align="center">Search for Record to Remove</h1>
+<form name="information" action="/recruitmentportal/jsp/RemoveSearchResult.jsp"  method="post" >
+<div class="row">	
 
-   
-    </head>
-    <body>
-    <div class="row">
+<br>	
+        <div class="col col-lg-4"></div>
+        <div class="col col-lg-4">
+		<input type="text" class="form-control" name="removesearch" placeholder="Search"  required>
+        </div>
+        <div class="col col-lg-1">    
+        <button class="btn btn-default"  type="Submit">Search</button>    
+        </div>
+        <div class="col col-lg-3"></div>   
+</div>
+</form>
 <nav class="navbar navbar-inverse navbar-fixed-top" >
 <div class="container-fluid">
 <div class="navbar-header">
@@ -27,38 +40,22 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
        </button>
-       
-       
-   <a class="navbar-brand page-scroll" href="main.html">IDeaS</a>
-   
-   
+   <a class="navbar-brand " href="/recruitmentportal/main.html">IDeaS</a>
 </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>
         <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
-        <li><a href="jsp/UpdateEntries.jsp">Update Information</a></li>
+        <li class="active"><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
-        <li><a href="/recruitmentportal/RemoveEntry.html">Remove Entry</a></li>
+        
       </ul>
- <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >
-      
-    <div class="navbar-form navbar-right" role="search">
-    <div class="form-group">
-      <input type="text" name="searchbox" class="form-control" placeholder="Search" required> 
-    </div>
-      <button type="submit" class="btn btn-default">Search</button>
-    </div>
-    </form>
+
     </div>
     </div>
  </nav>
- </div>
- <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
  
+
+
 </body>
 </html>

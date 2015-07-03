@@ -5,6 +5,7 @@
 /RemoveDesignation.jsp////*////
 /SearchResult.jsp////*////
 /UpdateForm.jsp////*////
-/UpdateSearchResult.jsp////*////
 /ViewAll.jsp////*////
 /NewEntryForm.jsp////*////
+/UpdateSearchResult.jsp////*////
+/RemoveSearchResult.jsp////*////

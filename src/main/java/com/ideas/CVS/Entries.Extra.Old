@@ -14,6 +14,7 @@
 /commons-io-2.4.jar////*////
 /DepartmentRemover.java////*////
 /FileDownloadController.java////*////
+/ResumeDownloadController.java////*////
 /NewDepartmentAdder.java////*////
 /NewDesignationAdder.java////*////
-/ResumeDownloadController.java////*////
+/RemoveEntryController.java////*////

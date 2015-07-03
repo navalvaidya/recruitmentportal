@@ -100,6 +100,12 @@
   	<description></description>
   	<servlet-class>com.ideas.ExcelExtractorInitialize1</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>RemoveEntryController</servlet-name>
+  	<display-name>RemoveEntryController</display-name>
+  	<description></description>
+  	<servlet-class>com.ideas.RemoveEntryController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>UploadToDatabase</servlet-name>
   	<url-pattern>/UploadToDatabase</url-pattern>
@@ -163,6 +169,10 @@
   <servlet-mapping>
   	<servlet-name>ExcelExtractorInitialize1</servlet-name>
   	<url-pattern>/ExcelExtractorInitialize1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RemoveEntryController</servlet-name>
+  	<url-pattern>/RemoveEntryController</url-pattern>
   </servlet-mapping>
   <session-config>
 <session-timeout>
