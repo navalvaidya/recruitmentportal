@@ -30,7 +30,7 @@
      <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
      <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
      <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
-     
+     <li><a href="/recruitmentportal/RemoveEntry.html">Remove Entry</a></li>
      </ul>
      
   <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >    
@@ -54,18 +54,21 @@ prop.load(input);
 String dburl = prop.getProperty("database");
 String user = prop.getProperty("dbuser");
 String passwd = prop.getProperty("dbpassword");
-
+String sid="1";
 String id=request.getParameter("id");
 Class.forName("com.mysql.jdbc.Driver");
 Connection con = DriverManager.getConnection(dburl,user,passwd);
-PreparedStatement stat1= con.prepareStatement("SELECT * FROM employee WHERE id=?");
+PreparedStatement stat1= con.prepareStatement("SELECT * FROM employee,stage WHERE id=? AND employee.stageid=stage.stageid");
 
+Statement stat4 = con.createStatement();
+ResultSet result4 = stat4.executeQuery("SELECT * FROM stage");
 Statement stat2 = con.createStatement();
 ResultSet result2 = stat2.executeQuery("SELECT * FROM department");
 Statement stat3 = con.createStatement();
 ResultSet result3 = stat3.executeQuery("SELECT * FROM designation");
 stat1.setString(1, id);
 ResultSet result=stat1.executeQuery();
+
 while(result.next())
 {
 String department=result.getString("department");	
@@ -89,11 +92,11 @@ String comments=result.getString("comments");
 <label for="department" class="col col-lg-2">Department<font color="red">*</font><a href="/recruitmentportal/AddDepartment.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveDepartment.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
 <div class="col col-lg-4">
 <select name="department" class="form-control" >
-<option value=<%=result.getString("department")%>><%=result.getString("department")%></option>
+<option value="<%=result.getString("department")%>"><%=result.getString("department")%></option>
 <%
 while(result2.next()){
 %>
- <option value=<%=result2.getString("department")%>><%=result2.getString("department")%></option>
+ <option value="<%=result2.getString("department")%>"><%=result2.getString("department")%></option>
  
 <%} %> 
 
@@ -114,11 +117,11 @@ while(result2.next()){
 <label for="designation" class="col col-lg-2">Designation<font color="red">*</font><a href="/recruitmentportal/AddDesignation.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveDesignation.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
 <div class="col col-lg-4">
 <select name="designation" class="form-control" >
-<option value=<%=result.getString("designation")%>><%=result.getString("designation")%></option>
+<option value="<%=result.getString("designation")%>"><%=result.getString("designation")%></option>
 <%
 while(result3.next()){
 %>
- <option value=<%=result3.getString("designation")%>><%=result3.getString("designation")%></option>
+ <option value="<%=result3.getString("designation")%>"><%=result3.getString("designation")%></option>
  
 <%} %> 
 
@@ -164,6 +167,20 @@ while(result3.next()){
 <input type="text" name="prevorg" placeholder="Previous organization"  class="form-control" value="<%=result.getString("prevorg")%>">
 </div>
 </div>
+<label for="stage" class="col col-lg-2">Stage<font color="red">*</font><a href="/recruitmentportal/AddStage.html"><span class="glyphicon glyphicon-plus-sign"></span></a><a href="/recruitmentportal/jsp/RemoveStage.jsp"><span class="glyphicon glyphicon-minus-sign"></span></a></label>
+<div class="col col-lg-4">
+<select name="stage" class="form-control" >
+<option value="<%=result.getString("stage")%>"><%=result.getString("stage")%></option>
+<%
+while(result4.next()){
+%>
+ <option value="<%=result4.getString("stage")%>"><%=result4.getString("stage")%></option>
+ 
+<%} %> 
+
+</select>
+</div>
+</div>
 </div>
 <br>
 <br>
@@ -172,7 +189,7 @@ while(result3.next()){
 <label for="comments">Comments</label><br>
 <textarea rows="4"  cols="50" name="comments" placeholder="Comments" >"<%=result.getString("comments")%>"</textarea>
 </div>
-</div>
+
 </div>
 </form>
 <div class="row">

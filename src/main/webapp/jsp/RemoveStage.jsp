@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="java.sql.*,java.io.PrintWriter"%>
+<%@page import="java.io.*" %>
+<%@page import= "java.util.Properties" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,28 +15,54 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-<title>Add Department</title>
+<title>Remove Stage</title>
 
 </head>
 <body>
 <br><br><br><br><br><br>
-<h1 align="center">Add a Department</h1>
-<form name="infoForm" id="infoForm" action="/recruitmentportal/NewDepartmentAdder"  method="post" >
-<div class="row">	
+<h1 align="center">Remove a Stage</h1>
 
-<br>	
-        <div class="col col-lg-4"></div>
-        <div class="col col-lg-4">
-		<input type="text" class="form-control" name="newdepartment" placeholder="Department"  required>
-        </div>
-       
-        <div class="col col-lg-1">    
-        <button class="btn btn-default"  type="Submit" onclick="submitChanges()">Add</button>
-        </div>
-        <div class="col col-lg-3"></div>   
-</form>
+<%
+Properties prop = new Properties();
+InputStream input = new FileInputStream("/Recruitment Portal/config.properties");
+prop.load(input);
+String dburl = prop.getProperty("database");
+String user = prop.getProperty("dbuser");
+String passwd = prop.getProperty("dbpassword");
+
+Class.forName("com.mysql.jdbc.Driver");
+Connection con = DriverManager.getConnection(dburl,user,passwd);
+Statement stat1 = con.createStatement();
+ResultSet result = stat1.executeQuery("SELECT * FROM stage");
+%>
+<div class="container container-fluid">
+<table class="table table-bordered" id="mytable">
+	<thead>
+		<tr>
+			<th style="text-align: centre;">Stage</th>
+		</tr>
+	</thead>
+<%
+while(result.next()){
+%>
+
+<tr>
+
+	<td><a style="margin: 10px 5px;" href="/recruitmentportal/StageRemover?id=<%=result.getString("stageid")%>"><%=result.getString("stage") %></a></td>
+
+</tr>
+    
+<%} %> 
+
+
+<%
+stat1.close();
+con.close();
+
+%>
  
-
+</table>
+</div>
 <nav class="navbar navbar-inverse navbar-fixed-top" >
 <div class="container-fluid">
 <div class="navbar-header">
@@ -44,11 +75,11 @@
 </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-         <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>
+        <li><a href="/recruitmentportal/jsp/ViewAll.jsp">View</a></li>
         <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
         <li class="active"><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
-       <li><a href="/recruitmentportal/RemoveEntry.html">Remove Entry</a></li>
+        
       </ul>
 
     </div>

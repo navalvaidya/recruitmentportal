@@ -52,7 +52,7 @@ ResultSet result=stat1.executeQuery();
         <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
         <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
-        
+        <li><a href="/recruitmentportal/RemoveEntry.html">Remove Entry</a></li>
       </ul>
      
       </div>
@@ -96,8 +96,8 @@ ResultSet result=stat1.executeQuery();
 		  <td><a href="/recruitmentportal/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("designation") %></a></td>
 		  <td><a href="/recruitmentportal/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("experience") %></a></td>
 		  <td><a href="/recruitmentportal/jsp/UpdateForm.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("comments") %></a></td>
-		  <td><a href="/recruitmentportal/jsp/ResumeOtherUpdate.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("resumelink") %></a></td> 			  		 
-		  <td><a href="/recruitmentportal/jsp/OtherFileUpdate.jsp?id=<%=result.getInt("id") %>" ><%=result.getString("otherfile") %></a></td>
+		  <td><a class="btn btn-default" href="/recruitmentportal/jsp/ResumeOtherUpdate.jsp?id=<%=result.getInt("id") %>" >Upload</a></td> 			  		 
+		  <td><a class="btn btn-default" href="/recruitmentportal/jsp/OtherFileUpdate.jsp?id=<%=result.getInt("id") %>" >Upload</a></td>
 		 
 		 </tr>
 		

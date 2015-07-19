@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +42,7 @@ public class DataUpdateController extends HttpServlet {
 	    String DBPasswd=config.DBPasswd();
 	    String DBUser=config.DBUser();
 		Date date=new Date();
+		String stageid=null;
 		String id=request.getParameter("id");
 		String department=request.getParameter("department");
 		String name=request.getParameter("name");
@@ -51,16 +52,23 @@ public class DataUpdateController extends HttpServlet {
 		String ectc=request.getParameter("ectc");
 		String prevorg=request.getParameter("prevorg");
 		String comments=request.getParameter("comments");
-		System.out.println(department);
+		String stage=request.getParameter("stage");
+		System.out.println(designation);
+		System.out.println(stage);
 		boolean param = false;
 		try {
 		
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
-		
-			
+			PreparedStatement stat3=con.prepareStatement("SELECT stageid FROM stage WHERE stage=?");
+			stat3.setString(1, stage);
+			ResultSet result3 = stat3.executeQuery();
+			while(result3.next()){
+				stageid=result3.getString("stageid");
+			}
+			System.out.println(stageid);
 			System.out.println("Inside post method");
-			PreparedStatement stat2=con.prepareStatement("UPDATE employee SET department=?, name=?, designation=?, experience=?, cctc=?, ectc=?, prevorg=?,comments=?,lastmodified=? WHERE id=?");
+			PreparedStatement stat2=con.prepareStatement("UPDATE employee SET department=?, name=?, designation=?, experience=?, cctc=?, ectc=?, prevorg=?,comments=?,lastmodified=?,stageid=? WHERE id=?");
 			stat2.setString(1, department);
 			stat2.setString(2, name);
 			stat2.setString(3, designation );
@@ -70,7 +78,8 @@ public class DataUpdateController extends HttpServlet {
 			stat2.setString(7, prevorg);
 			stat2.setString(8, comments);
 			stat2.setString(9, date.toString());
-			stat2.setString(10,id);
+			stat2.setString(10, stageid);
+			stat2.setString(11,id);
 			stat2.executeUpdate();
 			System.out.println("Update Successful!!!");
 			param=true;

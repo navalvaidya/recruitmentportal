@@ -33,7 +33,7 @@
      <li class="active"><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
      <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
      <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
-         
+       <li><a href="/recruitmentportal/RemoveEntry.html">Remove Entry</a></li>  
      </ul>
      <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >
       
@@ -78,7 +78,7 @@ ResultSet result2 = stat2.executeQuery("SELECT * FROM designation");
 <%
 while(result.next()){
 %>
-    <option value=<%=result.getString("department")%>><%=result.getString("department")%></option> 
+    <option value="<%=result.getString("department")%>"><%=result.getString("department")%></option> 
 <%} %> 
 
 </select>
@@ -100,7 +100,7 @@ while(result.next()){
     <%
 while(result2.next()){
 %>
-    <option value=<%=result2.getString("designation")%>><%=result2.getString("designation")%></option> 
+    <option value="<%=result2.getString("designation")%>"><%=result2.getString("designation")%></option> 
 <%} %> 
  </select>
 </div>

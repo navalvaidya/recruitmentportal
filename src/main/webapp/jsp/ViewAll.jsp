@@ -29,7 +29,7 @@ String passwd = prop.getProperty("dbpassword");
 String keyword=request.getParameter("searchbox");
 Class.forName("com.mysql.jdbc.Driver");
 Connection con = DriverManager.getConnection(dburl,user,passwd);
-PreparedStatement stat1 = con.prepareStatement("SELECT * FROM EMPLOYEE");
+PreparedStatement stat1 = con.prepareStatement("SELECT * FROM EMPLOYEE,STAGE WHERE employee.stageid=stage.stageid ");
 ResultSet result=stat1.executeQuery();
 
         
@@ -51,7 +51,7 @@ ResultSet result=stat1.executeQuery();
         <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
         <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
-        
+        <li><a href="/recruitmentportal/RemoveEntry.html">Remove Entry</a></li>
       </ul>
       <form name="information" action="/recruitmentportal/jsp/SearchResult.jsp"  method="post" >
       
@@ -82,16 +82,18 @@ ResultSet result=stat1.executeQuery();
 	<table class="table table-striped" id="mytable">
 		 <thead>
 		  <tr>
-			<th>Department</th>		  
+			<th>Department</th>
+			<th>Stage</th>		  
 			<th>Name</th>
 			<th>Designation</th>
 			<th>Experience</th>
 			<th>Comments</th>
 			<th>Current ctc</th>
 			<th>Expected ctc</th>
+			<th>Last Modified</th>
 			<th>Resume Download</th>
 			<th>Other File Download</th>
-			<th>Last Modified</th>
+			
 					  
 		  </tr>
 		</thead>
@@ -103,15 +105,17 @@ ResultSet result=stat1.executeQuery();
 		
 		 <tr>
 		 <td><%=result.getString("department") %></td>
+		 <td><%=result.getString("stage") %></td>
 		  <td><%=result.getString("name") %></td>
 		  <td><%=result.getString("designation") %></td>
 		  <td><%=result.getString("experience") %></td>
 		  <td><%=result.getString("comments") %></td>
 		  <td><%=result.getString("cctc") %></td>
 		  <td><%=result.getString("ectc") %></td>
-		  <td><a href="/recruitmentportal/ResumeDownloadController?id=<%=result.getString("id") %>"><%=result.getString("resumelink")%></a></td>
-		  <td><a href="/recruitmentportal/FileDownloadController?id=<%=result.getString("id") %>"><%=result.getString("otherfile")%></a></td>
 		  <td><%=result.getString("lastmodified") %></td>
+		  <td><a class="btn btn-default" href="/recruitmentportal/ResumeDownloadController?id=<%=result.getString("id") %>">Download</a></td>
+		  <td><a class="btn btn-default" href="/recruitmentportal/FileDownloadController?id=<%=result.getString("id") %>">Download</a></td>
+		  
 		 </tr>
 		
 		<% 		

@@ -128,7 +128,7 @@ public class UploadFileServlet extends HttpServlet {
 				}
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
 				Connection con = DriverManager.getConnection(DBUrl,DBUser,DBPasswd);
-				PreparedStatement stat2=con.prepareStatement("INSERT INTO employee (department,name, designation, experience,cctc,ectc,prevorg,comments,resumelink,otherfile,createdon,lastmodified) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+				PreparedStatement stat2=con.prepareStatement("INSERT INTO employee (department,name, designation, experience,cctc,ectc,prevorg,comments,resumelink,otherfile,createdon,lastmodified,stageid) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 				Date date=new Date();
 				for(i=0;i<8;i++)
 				{
@@ -140,6 +140,7 @@ public class UploadFileServlet extends HttpServlet {
 				stat2.setString(10, other);
 				stat2.setString(11, date.toString());
 				stat2.setString(12, date.toString());
+				stat2.setString(13, "1");
 				stat2.executeUpdate();
 			
 				stat2.close();

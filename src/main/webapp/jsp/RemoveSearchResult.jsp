@@ -52,7 +52,7 @@ ResultSet result=stat1.executeQuery();
         <li><a href="/recruitmentportal/jsp/NewEntryForm.jsp">New Entry</a></li>
         <li><a href="/recruitmentportal/jsp/UpdateEntries.jsp">Update Information</a></li>
         <li><a href="/recruitmentportal/ExcelUpload.html">Upload from Excel</a></li>
-        
+        <li><a href="/recruitmentportal/RemoveEntry.html">Remove Entry</a></li>
       </ul>
      
       </div>
